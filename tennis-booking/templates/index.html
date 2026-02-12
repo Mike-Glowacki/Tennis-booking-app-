@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AceBook — Tennis Lesson Booking</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo" onclick="navigate('coaches')">
+                <span class="logo-icon">🎾</span>
+                <span class="logo-text">AceBook</span>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" data-view="coaches" onclick="navigate('coaches')">Coaches</button>
+                <button class="nav-btn" data-view="bookings" onclick="navigate('bookings')">My Bookings</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Coaches View -->
+        <section id="view-coaches" class="view active">
+            <h1>Our Coaches</h1>
+            <p class="subtitle">Choose a coach to book your next lesson</p>
+            <div id="coaches-grid" class="coaches-grid">
+                <!-- Filled by JS -->
+            </div>
+        </section>
+
+        <!-- Booking View -->
+        <section id="view-booking" class="view">
+            <button class="back-btn" onclick="navigate('coaches')">&larr; Back to Coaches</button>
+            <div id="booking-coach-info" class="coach-detail">
+                <!-- Filled by JS -->
+            </div>
+
+            <div class="booking-flow">
+                <div class="step">
+                    <h2>1. Pick a Date</h2>
+                    <div id="date-picker" class="date-picker">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h2>2. Choose a Time</h2>
+                    <div id="time-slots" class="time-slots">
+                        <p class="hint">Select a date first</p>
+                    </div>
+                </div>
+
+                <div class="step" id="step-details" style="display:none;">
+                    <h2>3. Your Details</h2>
+                    <form id="booking-form" class="booking-form" onsubmit="submitBooking(event)">
+                        <input type="hidden" id="selected-slot-id">
+                        <div class="form-group">
+                            <label for="book-name">Full Name</label>
+                            <input type="text" id="book-name" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="book-email">Email</label>
+                            <input type="email" id="book-email" required placeholder="john@example.com">
+                        </div>
+                        <div id="booking-summary" class="booking-summary"></div>
+                        <button type="submit" class="btn btn-primary btn-lg">Confirm Booking</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Bookings View -->
+        <section id="view-bookings" class="view">
+            <h1>My Bookings</h1>
+            <p class="subtitle">Look up your upcoming lessons</p>
+            <form class="lookup-form" onsubmit="lookupBookings(event)">
+                <input type="email" id="lookup-email" required placeholder="Enter your email address">
+                <button type="submit" class="btn btn-primary">Look Up</button>
+            </form>
+            <div id="bookings-list" class="bookings-list">
+                <!-- Filled by JS -->
+            </div>
+        </section>
+
+        <!-- Success Modal -->
+        <div id="modal-backdrop" class="modal-backdrop" onclick="closeModal()">
+            <div class="modal" onclick="event.stopPropagation()">
+                <div class="modal-icon">✅</div>
+                <h2 id="modal-title">Booking Confirmed!</h2>
+                <p id="modal-message"></p>
+                <button class="btn btn-primary" onclick="closeModal()">Done</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>🎾 AceBook — Book your next tennis lesson</p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

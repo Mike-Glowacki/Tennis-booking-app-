@@ -1,0 +1,652 @@
+/* ── Reset & Variables ─────────────────────────────────── */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --green-dark: #1a6b3c;
+    --green: #2d8f56;
+    --green-light: #e8f5e9;
+    --green-bg: #f0f9f2;
+    --yellow: #f5c842;
+    --yellow-light: #fff8e1;
+    --white: #ffffff;
+    --gray-50: #fafafa;
+    --gray-100: #f5f5f5;
+    --gray-200: #eeeeee;
+    --gray-300: #e0e0e0;
+    --gray-400: #bdbdbd;
+    --gray-600: #757575;
+    --gray-800: #424242;
+    --gray-900: #212121;
+    --red: #e53935;
+    --red-light: #ffebee;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+    --radius: 12px;
+    --radius-sm: 8px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--green-bg);
+    color: var(--gray-900);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Header ───────────────────────────────────────────── */
+.header {
+    background: var(--green-dark);
+    color: var(--white);
+    padding: 0 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-md);
+}
+
+.header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.logo-icon {
+    font-size: 1.6rem;
+}
+
+.logo-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.nav {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.nav-btn {
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+}
+
+.nav-btn:hover {
+    background: rgba(255,255,255,0.1);
+    color: var(--white);
+}
+
+.nav-btn.active {
+    background: rgba(255,255,255,0.15);
+    color: var(--white);
+}
+
+/* ── Main ─────────────────────────────────────────────── */
+.main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    width: 100%;
+    flex: 1;
+}
+
+.view {
+    display: none;
+}
+
+.view.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 0.25rem;
+}
+
+.subtitle {
+    color: var(--gray-600);
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+}
+
+/* ── Coaches Grid ─────────────────────────────────────── */
+.coaches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+}
+
+.coach-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: all 0.25s;
+    border: 2px solid transparent;
+}
+
+.coach-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+    border-color: var(--green);
+}
+
+.coach-card-header {
+    background: linear-gradient(135deg, var(--green), var(--green-dark));
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.coach-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--white);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.coach-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.coach-card-name {
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.coach-card-specialty {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.85rem;
+}
+
+.coach-card-body {
+    padding: 1rem 1.25rem;
+}
+
+.coach-card-bio {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.coach-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.coach-rate {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--green-dark);
+}
+
+.coach-rate span {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--gray-400);
+}
+
+.btn-book-coach {
+    background: var(--green);
+    color: var(--white);
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-book-coach:hover {
+    background: var(--green-dark);
+}
+
+/* ── Booking View ─────────────────────────────────────── */
+.back-btn {
+    background: none;
+    border: none;
+    color: var(--green-dark);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.25rem 0;
+    margin-bottom: 1rem;
+    transition: color 0.2s;
+}
+
+.back-btn:hover {
+    color: var(--green);
+}
+
+.coach-detail {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.coach-detail-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 3px solid var(--green-light);
+}
+
+.coach-detail-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.coach-detail-info h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.15rem;
+}
+
+.coach-detail-info .specialty {
+    color: var(--green);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.coach-detail-info .rate {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+}
+
+/* ── Booking Flow Steps ───────────────────────────────── */
+.booking-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.step {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.step h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--green-dark);
+    margin-bottom: 1rem;
+}
+
+.hint {
+    color: var(--gray-400);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* ── Date Picker ──────────────────────────────────────── */
+.date-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.date-btn {
+    background: var(--gray-100);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    padding: 0.6rem 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    min-width: 80px;
+}
+
+.date-btn:hover {
+    border-color: var(--green);
+    background: var(--green-light);
+}
+
+.date-btn.selected {
+    border-color: var(--green);
+    background: var(--green);
+    color: var(--white);
+}
+
+.date-btn .day-name {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.15rem;
+}
+
+.date-btn .day-num {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.date-btn .month {
+    display: block;
+    font-size: 0.7rem;
+    color: inherit;
+    opacity: 0.7;
+}
+
+/* ── Time Slots ───────────────────────────────────────── */
+.time-slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.time-btn {
+    background: var(--green-light);
+    border: 2px solid transparent;
+    border-radius: var(--radius-sm);
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--green-dark);
+}
+
+.time-btn:hover {
+    border-color: var(--green);
+    background: var(--white);
+}
+
+.time-btn.selected {
+    background: var(--green);
+    color: var(--white);
+    border-color: var(--green-dark);
+}
+
+/* ── Booking Form ─────────────────────────────────────── */
+.booking-form {
+    max-width: 400px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 0.3rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: var(--green);
+}
+
+.booking-summary {
+    background: var(--yellow-light);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    border-left: 4px solid var(--yellow);
+}
+
+/* ── Buttons ──────────────────────────────────────────── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.6rem 1.5rem;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: var(--green);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--green-dark);
+}
+
+.btn-lg {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+}
+
+.btn-danger {
+    background: var(--red-light);
+    color: var(--red);
+    font-size: 0.85rem;
+    padding: 0.4rem 1rem;
+}
+
+.btn-danger:hover {
+    background: var(--red);
+    color: var(--white);
+}
+
+/* ── Bookings List ────────────────────────────────────── */
+.lookup-form {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    max-width: 500px;
+}
+
+.lookup-form input {
+    flex: 1;
+    padding: 0.7rem 0.9rem;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.lookup-form input:focus {
+    border-color: var(--green);
+}
+
+.bookings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.booking-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.booking-info {
+    flex: 1;
+}
+
+.booking-coach {
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.2rem;
+}
+
+.booking-datetime {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+}
+
+.booking-price {
+    color: var(--green-dark);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.no-bookings {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--gray-400);
+}
+
+.no-bookings .icon {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+}
+
+/* ── Modal ────────────────────────────────────────────── */
+.modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal-backdrop.show {
+    display: flex;
+}
+
+.modal {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 2rem;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    animation: modalIn 0.3s ease;
+}
+
+@keyframes modalIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-icon {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+}
+
+.modal h2 {
+    margin-bottom: 0.5rem;
+}
+
+.modal p {
+    color: var(--gray-600);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ── Footer ───────────────────────────────────────────── */
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--gray-400);
+    font-size: 0.85rem;
+    margin-top: auto;
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 640px) {
+    .header-inner {
+        flex-direction: column;
+        height: auto;
+        padding: 0.75rem 0;
+        gap: 0.5rem;
+    }
+
+    .coaches-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .coach-detail {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .booking-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .lookup-form {
+        flex-direction: column;
+    }
+}
